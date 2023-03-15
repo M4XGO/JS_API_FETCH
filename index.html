@@ -1,44 +1,157 @@
 <!doctype html>
 <html lang="fr">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
     <title>Mon Index pour le Js</title>
-  </head>
+</head>
 
 <body>
-<h1>Mon Index pour le JS</h1>
+    <h1>Mon Index pour le JS</h1>
+    <p id="test">TEST</p>
+    <div class="drop-down">
+        <h2>Dropdown button des languages de programmation</h2>
+        <select name="language" id="language">
+            <option value="javascript">JavaScript</option>
+            <option value="python">Python</option>
+            <option value="c++" disabled>C++</option>
+            <option value="java" selected>Java</option>
+        </select>
 
-<div class="drop-down">
-    <h2>Dropdown button des languages de programmation</h2>
-    <select name="language" id="language">
-        <option value="javascript">JavaScript</option>
-        <option value="python">Python</option>
-        <option value="c++" disabled>C++</option>
-        <option value="java" selected>Java</option>
-    </select>
-</div>
+        <h2>Le changement va être éffetué ici :</h2>
+        <p id="aRemplir"></p>
+    </div>
+    <button id="myButton">CLICK ME</button>
+   
+    <table>
+        <thead>
+            <tr>
+                
+                <th>Numéro</th>
+                <th>Nom</th>
+                <th>Url</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody id="ici">
+            
+        </tbody>
+    </table>
 
-<div class="form-index">
-    <h2>Formulaire d'inscription </h2>
-    <form action="index.html" method="post">
-        <div>
-            <label for="name">Nom :</label><br>
-            <input type="text" name="user_name" id="name">
-        </div>
-        <div>
-            <label for="name">E-mail&nbsp;:</label><br>
-            <input type="text" name="user_mail" id="mail">
-        </div>
-        <div>
-            <label for="name">Message :</label><br>
-            <textarea id="name" name="user_message"></textarea>
-        </div>
-        <div class="button">
-            <button type="submit">Envoyer le message</button>
-        </div>
 
-    </form>
-</div>
+
+    <div class="form-index">
+        <h2>Formulaire d'inscription </h2>
+        <form action="index.html" method="post">
+            <div>
+                <label for="name">Nom :</label><br>
+                <input type="text" name="user_name" id="name">
+            </div>
+            <div>
+                <label for="name">E-mail&nbsp;:</label><br>
+                <input type="text" name="user_mail" id="mail">
+            </div>
+            <div>
+                <label for="name">Message :</label><br>
+                <textarea id="name" name="user_message"></textarea>
+            </div>
+            <div class="button">
+                <button type="submit">Envoyer le message</button>
+            </div>
+
+        </form>
+    </div>
+
+    <script>
+
+        function afficheDatas(data) {
+            let ici = document.getElementById('ici');
+            let url =  document.getElementById('url');
+            let nomaAfficher= "";
+            let urlaAfficher;
+            let numPoke = 1;
+
+            data.map(function (produit, index) {
+                nomaAfficher += "<tr><td>"+numPoke+"</td>"
+                    +"<td>" + produit.name + "</td>"
+                + "<td><a href='"+produit.url+"'>"+produit.url +"</a></td>"+
+                "<td><img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/"+numPoke+".png'></td></tr>"; 
+                numPoke+=1; 
+            
+            });
+
+            ici.innerHTML = nomaAfficher;
+
+
+            
+        }
+
+        function fetchSomePokemon() { // appelle de l'api 
+            return fetch('https://pokeapi.co/api/v2/pokemon?limit=150')
+        }
+
+        fetchSomePokemon()
+            .then((httpResponse) => { //renvoie le retour du then avec le httpResponse en param
+
+                console.log('httpResponse : ', httpResponse);
+                return httpResponse.json()
+
+            })
+            .then((pokemonList) => {
+                console.log(pokemonList.results.map((ele) => {
+                    console.log('nom : ', ele)
+                }))
+                afficheDatas(pokemonList.results);
+            });
+
+
+
+
+
+
+
+
+
+        //alert('hello')
+        const doc = document;
+        const myElement = doc.getElementById("test") // avoir l'element test
+        myElement.textContent = "New Text"; // ecrire New Text dans myElement
+        myElement.innerHTML = "<p>New Paragraph </p>" // changer les balises et le contenu
+        myElement.style.color = "red"; // changer la couleur
+        const newElement = doc.createElement("div"); //créer un element div
+        newElement.id = "test2";//avec l'id test 2
+        myElement.appendChild(newElement); // ajout en tant que fils a l'élément p 
+        newElement.textContent = "Test 2"; // contenu de div="test2" = Test 2
+        newElement.style.color = "white"; //couleur blanche
+        newElement.style.textDecoration = "underline"; // souligner
+
+
+        const myButton = doc.getElementById("myButton");
+        const myParagraph = doc.getElementById("paragraphe");
+
+        //addEventListener : ecoute ce qu'on fait
+        myButton.addEventListener('click', function () { // fonction call back qui prends en évenement le click
+            myParagraph.innerHTML = "Bonjour les B1!";// 
+        })
+
+        const promise = new Promise((resolve, reject) => { // fonction promise qui prends en paramêtre resolve ou reject
+            setTimeout(() => { // tim de 1000 ms
+                const randomNumber = Math.floor(Math.random() * 10); // création d'un nbr aléatoire
+                if (randomNumber % 2 == 0) { //verfi si paire
+                    resolve(randomNumber);
+                } else { //sinon 
+                    reject(new Error('Le nombre est impair.'));
+                }
+            }, 1000);
+        });
+
+        promise
+            .then(result => console.log(`Le nombre est ${result}.`)) // savoir si la promise est résolu on passe dedans
+            //quand la promesse sera résolu on va analyser le contenu de la promise
+            .catch(error => console.error(error.message));
+
+        console.log(promise);
+    </script>
+
 </body>
-
