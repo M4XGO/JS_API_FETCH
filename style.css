@@ -67,15 +67,23 @@ h1 {
 }
 
 table {
-    background-color: #fff;
+   
     color: black;
+   background-color: #fff;
     border: 4px solid black;
+}
+
+th{
+    border: 1px solid black;
 }
 
 td {
     border: 1px solid black;
 }
 
-th {
-    border: 1px solid black;
+.centrer {
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
