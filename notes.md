@@ -6,13 +6,12 @@
 - ### Mdn web docs :: bible : https://developer.mozilla.org/fr/ 
 
 ## <ins>Reflex à avoir :</ins>
-- Les noms de variables et de fonction doivent être en Anglais et pertinente pour le codex
-- Camel Case = `
-anotherVariable`=> minuscule deb et séparer les noms avec des maj
+- Les noms de variables et de fonction doivent être en Anglais et pertinente pour le code
+- Camel Case = `anotherVariable`=> minuscule début et séparer les noms avec des maj
 - Pascal Case = `TryThis01` => maj au début, maj pr séparer les noms et chiffres
 
 ## <ins>Les bases du JS : </ins>
-- Premier code qui affiche du txt dans la console intégrer à VS où ZSH : 
+- Premier code qui affiche du txt dans la console intégré à VS où ZSH : 
 ``` javascript
 console.log('Hello World');
 ``` 
@@ -35,7 +34,7 @@ console.log(typeof isAwake)
 - A chaque nouvelle ajout dans le code = l'executer
 - Pas très bon en calculs Maths
 - Types de variables == tous les autres languages
-- `;` obtionnels en JS = si on en met, les mettres de partous sinon rien
+- `;` obtionnels en JS = si on en met, les mettres de partout sinon rien
 - <ins><strong>Spread operateur : </ins></strong>
     - récuperer les valeurs d'un tableau et les éclater/les répendres
     ```javascript
@@ -45,13 +44,13 @@ console.log(typeof isAwake)
     const myArray = [132,33,23,4,32]
     const myOtherArray = [1,2,3,..myArray]
     ```
-- <ins>Les expréssions régulières : <strong>RegEx</strong></ins> : séléctionner des lettres spécifiques ect dans une chaine de caractère
+- <ins>Les expréssions régulières : <strong>RegEx</strong></ins> : séléctionner des lettres spécifiques dans une chaine de caractère
 ```js
 return myString.replace(/[aieouy]/gi, '');
 // le g est obligatoire (remove toutes les occurencre)
 //i pour la case (sans celui-ci ne prends pas en compte les majs)
 ```
-- `test` l'occurence dans si n est dans la chaine de caractère renvoie True
+- `test` (fonction predef js) l'occurence dans si n est dans la chaine de caractère renvoie True
 ```js 
 const monTest = ["Ceci est un test"];
 
@@ -60,7 +59,7 @@ console.log(RegExp('n').test(monTest))
 ```
 - fonction `sort`: 
     - le signe de la soustraction de <strong>b - a</strong>, donne un signe qui est utilisé pour trier les ordres dans le tableau 
-    trier 
+    trié.
     - donc <strong>a - b</strong> range par ordre croissant.
 ```js
 function sortDescending(numbers) {
@@ -75,7 +74,7 @@ const pi = 3.14;// création d'une varibale constante
 let text1 = 'Ceci est une chaine de carcatères'; // def text1
 ```
 - ### <strong>NE PAS UTILISER `var`</strong>
-- `let // const` >> `var`
+- `let & const` >> `var`
 - `const` == créer une variable qui ne sont pas réafectable (constante)
 - `let`== déclarer une variable réafectable a tout moment + affecter dans `function // while // for...`
 - Privilégier `const` à `let` le plus possible
@@ -209,7 +208,7 @@ TestArray.map((element) => {
 
 
 ## <ins>Programation Assincroniser : </ins>
-- Programation qui va s'éxecuter au bout d'un certain temps, d'un évenement, ect... 
+- Programation qui va s'éxecuter au bout d'un certain temps, d'un évenement, <strong>dans un ordre choisi.</strong>
 - ≠ Programation sincron : fait des call les uns après les autres
 
 
@@ -220,9 +219,9 @@ TestArray.map((element) => {
 console.log(oiseaux.includes('pigeon'));
 ```
 
-## <ins> Javascript et DOM : </ins>
+## <ins> JavaScript Web et DOM : </ins>
 - `document`=> c'est un objet global
-- créer 
+
 ```js
 const doc = document; 
 ```
@@ -254,9 +253,30 @@ const doc = document;
 ## <ins>Les promesses js : </ins>
 - C'est une fonction qui a trois status : en attente, tenu, perdu
 - Fetch retourne des promesses 
+- Ex de promesse js 
+```js 
+ const promise = new Promise((resolve, reject) => { // fonction promise qui prends en paramêtre resolve ou reject
+            setTimeout(() => { // tim de 1000 ms
+                const randomNumber = Math.floor(Math.random() * 10); // création d'un nbr aléatoire
+                if (randomNumber % 2 == 0) { //verfi si paire
+                    resolve(randomNumber);
+                } else { //sinon 
+                    reject(new Error('Le nombre est impair.'));
+                }
+            }, 1000);
+        });
+```
+
 
 ## <ins>API Fetch : </ins>
 - Fournit une interface pour la récupération de ressources
-- Permet d'étudier les request et les respons 
+- Permet d'étudier les request et les réponsses : 
+- Connexion à une API : 
+```js
+ function fetchSomePokemon() { // appelle de l'api 
+            return fetch('https://pokeapi.co/api/v2/pokemon?limit=150')//url donné de l'api
+        }
+```
+
 
 

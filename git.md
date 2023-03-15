@@ -16,7 +16,7 @@
 - `git status` ==> savoir si on a save ou pas les fichiers 
 - `git add .` ou `git add *` pour ajouter tous les fichiers dans le repo  : ajouter 
 - `git commit -m "First Commit"`==> envoyer un message pour le commit : persister
-
+- `git push origin main`==> push sur gitHub les fichiers
 
 ## Comment faire ? 
 - Créer un repo sur Git-Hub 
@@ -32,3 +32,5 @@ git push -u origin main
     - Faire entrer entrer
 - Aller chercher la clef ssh dans le dossier ~/.ssh 
     - Copier coller la clef dans `add a new key` dans Git-Hub
+- Connexion à Git-Hub : `$ git remote add origin leLienCopié(du repo sur gitHub`
+    - `$ git remote -v ` à faire avant le push
